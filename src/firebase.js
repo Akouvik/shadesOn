@@ -1,13 +1,12 @@
 import * as firebase from "firebase";
-const config = {
-  apiKey: "AIzaSyDPvZumBTF4PJLs4mL6Ngvp_xzjfMuexbA",
-  authDomain: "mixedwb.firebaseapp.com",
-  databaseURL: "https://mixedwb.firebaseio.com",
-  projectId: "mixedwb",
-  storageBucket: "mixedwb.appspot.com",
-  messagingSenderId: "667950003068"
+var config = {
+  apiKey: "AIzaSyA4NHVlD6ioXTcXcYQ9oU51w_JoP1L-Uwk",
+  authDomain: "shadeson-8cecd.firebaseapp.com",
+  databaseURL: "https://shadeson-8cecd.firebaseio.com",
+  projectId: "shadeson-8cecd",
+  storageBucket: "shadeson-8cecd.appspot.com",
+  messagingSenderId: "723231391683"
 };
 firebase.initializeApp(config);
-//creating a table in the db
 
 export const database = firebase.database().ref("/posts");

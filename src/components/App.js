@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { database } from "../firebase";
 import _ from "lodash";
-// import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import renderHTML from "react-render-html";
 import Navigation from "./presentational/Navigation";
 import Form from "./presentational/Form";
 import ToolBarQuill from "./presentational/ToolBarQuill";
+import Authentication from "./presentational/Auth";
 import Picture from "./presentational/Picture";
+import { read } from "fs";
 
 class App extends Component {
   constructor(props) {
@@ -22,8 +23,9 @@ class App extends Component {
     this.onHandleChange = this.onHandleChange.bind(this);
     this.onHandleSubmit = this.onHandleSubmit.bind(this);
     this.titleHandler = this.titleHandler.bind(this);
-    this.onDrop = this.onDrop.bind(this);
+    this.onPictureUpload = this.onPictureUpload.bind(this);
   }
+
   //when react mounts we want to log the data from firebase
   componentDidMount() {
     database.on("value", snapshot => {
@@ -32,58 +34,86 @@ class App extends Component {
       });
     });
   }
+  //HANDLING THE LOGIN!!!
+  // onHandleLogin(){
+  //   const credentials = {
 
+  //   }
+  // }
+
+  //ARTICLE TITLE
+  titleHandler(e) {
+    this.setState({ title: e.target.value });
+  }
+
+  //ARTICLE BODY
   onHandleChange(e) {
-    // e.preventDefault();
     this.setState({
       body: e
-      // [e.target.name]: e.target.value
     });
   }
-  //adding post to db
+
+  //UPLOADING  ARTICLE PICTURES
+  onPictureUpload(event) {
+    console.log("input", event);
+    this.readFile(event);
+
+    if (event.files && event.files[0]) {
+      console.log("inside");
+
+      let reader = new FileReader();
+      console.log("reader", reader);
+      reader.onload = function(e) {
+        // e.preventDefault();
+        console.log("hey im in event");
+
+        document
+          .getElementById("blog-img")
+          .setAttribute("src", e.target.result)
+          .width(150)
+          .height(1200);
+      };
+      reader.readAsDataURL(event.files[0]);
+    }
+  }
+
+  //ADDING POST TO DB
   onHandleSubmit(e) {
     e.preventDefault();
     const post = {
       title: this.state.title,
-      body: this.state.body
+      body: this.state.body,
+      pictures: this.state.pictures
     };
     //adding post to db
-
     database.push(post);
     this.setState({
       title: "",
       body: "",
-      pictures: ""
+      pictures: []
     });
   }
-  titleHandler(e) {
-    this.setState({ title: e.target.value });
-  }
-  onDrop(picture) {
-    console.log("Picture", picture);
 
-    this.setState({
-      pictures: this.state.pictures.concat(picture)
-    });
-  }
   renderPosts() {
     return _.map(this.state.posts, (post, key) => {
       return (
         <div key={key} className="row article">
           <hr />
-          <div className="col-sm-6 home-post-image">
-            <a href="#">{/* <img src={post.img} /> */}</a>
-          </div>
-          <div className="col-sm-6 centered-content">
+          {/* <div className="col-sm-6 home-post-image">
             <a href="#">
-              <h3>{post.title}</h3>
-              <span className="body-text">{renderHTML(post.body)}</span>
+              <img src={post.img} />
             </a>
-            <div className="read-more">
-              <a href="#">Read More</a>
-            </div>
+          </div> */}
+          {/* <div className="col-sm-6 centered-content"> */}
+          <a href="#">
+            <h3>{post.title}</h3>
+            <span className="body-text">{renderHTML(post.body)}</span>
+          </a>
+          <div className="read-more">
+            <a href="#">Read More</a>
           </div>
         </div>
+        // </div>
       );
     });
   }
@@ -92,6 +122,7 @@ class App extends Component {
     return (
       <div className="container">
         <Navigation />
+        <Authentication />
         <form onSubmit={this.onHandleSubmit} className="input-form">
           <Form
             onHandleChange={this.onHandleChange}
@@ -102,15 +133,13 @@ class App extends Component {
             name="title"
             titleHandler={this.titleHandler}
           />
-          <div className="row col-sm-6">
-            <ToolBarQuill
-              onHandleChange={this.onHandleChange}
-              bodyValue={this.state.body}
-            />
-          </div>
-          <div className="row col-sm-6">
-            <Picture Drop={this.onDrop} />
-          </div>
+
+          <ToolBarQuill
+            onHandleChange={this.onHandleChange}
+            bodyValue={this.state.body}
+          />
+          <Picture imgUpload={this.onPictureUpload} />
+
           <button className="btn btn-primary">Post</button>
         </form>
 

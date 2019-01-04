@@ -1,14 +1,25 @@
 import React from "react";
-import ImageUploader from "react-images-upload";
 
-const Picture = ({ Drop }) => (
-  <ImageUploader
-    withIcon={true}
-    buttonText="Choose Image"
-    onChange={Drop}
-    imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-    maxFileSize={5242880}
-  />
+const Picture = ({ imgUpload }) => (
+  <div>
+    <input
+      type="file"
+      onChange={event => {
+        imgUpload(event);
+      }}
+    />
+    <img id="blog-img" src="" alt="your image" />
+    {/* <span class="btn btn-default btn-file">
+      <input
+        type="file"
+        accept="image/*"
+        capture="camera"
+        id="file-upload"
+        onChange={imgUpload}
+        className="main-article-image"
+      />
+    </span> */}
+  </div>
 );
 
 export default Picture;

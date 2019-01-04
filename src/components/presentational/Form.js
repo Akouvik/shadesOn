@@ -1,17 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ToolBarQuill from "./ToolBarQuill";
 
-const Form = ({
-  type,
-  name,
-  placeholder,
-  titleValue,
-  bodyValue,
-  titleHandler,
-  onHandleChange,
-  onHandleSubmit
-}) => (
+const Form = ({ type, name, placeholder, titleValue, titleHandler }) => (
   <div className="form-group">
     <input
       placeholder={placeholder}
