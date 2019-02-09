@@ -1,5 +1,9 @@
 * {
   box-sizing: border-box;
+  outline: none;
+}
+a {
+  color: black;
 }
 .navbar {
   font-family: fantasy;
@@ -66,35 +70,28 @@ p {
 ul {
   list-style: none;
 }
-a {
-  text-decoration: none;
-}
 
-div.read-more > a {
-  text-decoration: none;
-  margin: auto;
-  background: black;
+.read-more {
+  background-color: black;
   color: white;
   font-size: 14px;
   font-family: "nimbus-sans", Helvetica, Arial, sans-serif;
-  height: 35px;
-  line-height: 35px;
-  padding: 9px 16px;
-  text-transform: uppercase;
+  height: 3em;
   letter-spacing: 2px;
 }
-div.read-more > a:hover {
+.read-more:hover {
   border: 2px solid black;
   color: black;
-  background: white;
+  background-color: white;
+  transition: background-color 0.3s ease;
 }
-a,
 a:hover {
-  color: #000;
+  color: black;
   text-decoration: none;
 }
 
 li {
+  list-style: none;
   display: inline-block;
   position: relative;
   padding-bottom: 3px;
@@ -117,4 +114,116 @@ li:after {
 li:hover:after {
   width: 100%;
   background: palevioletred;
+}
+a {
+  text-decoration: none;
+}
+
+/* Modal styles */
+.modal,
+#sign-up-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  opacity: 0.9;
+  position: fixed;
+  border-radius: 0.5em;
+  text-align: center;
+  background: floralwhite;
+  width: 55%;
+  height: 37%;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-main span {
+  position: relative;
+  bottom: 6em;
+  left: 70%;
+  color: white;
+  font-size: 3em;
+}
+.modal-main span:hover {
+  cursor: pointer;
+}
+
+.login {
+  position: relative;
+  left: -1em;
+
+  width: 11em;
+  background-color: black;
+  border-color: black;
+}
+.btn-success:hover,
+#sign-up-button:hover {
+  color: black;
+  border-color: black;
+  background-color: white;
+}
+/* .btn-success:active {
+  color: black;
+  border-color: black;
+  background-color: white;
+} */
+
+#signup-button-at-login {
+  background-color: palevioletred;
+  border-color: palevioletred;
+  position: relative;
+  left: 44%;
+  top: -0.5em;
+}
+/* to show or hide the modal */
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+/* to show or hide the modal */
+
+.form-control {
+  font-family: fantasy;
+  margin: 1em 6em;
+  /* height: 3em; */
+  width: 67%;
+  background: white;
+  color: black;
+}
+.article-title-input {
+  margin: 1em 0em;
+}
+.options {
+  margin: 1em 0em;
+  width: 67%;
+}
+/* #sign-up-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+} */
+#sign-up-button {
+  position: relative;
+  width: 11em;
+  background-color: black;
+  border-color: black;
+}
+#login-button-at-signup {
+  background-color: palevioletred;
+  border-color: palevioletred;
+  position: relative;
+  left: 44%;
+  top: -2.5em;
 }
