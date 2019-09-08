@@ -1,46 +1,66 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import TabObject from "./Tab";
+import Blog from "./Blog";
 
 class Navigation extends Component {
   render() {
     return (
       <Router>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">
-            <div id="with-ma">With Ma</div>
-            <span id="shades">Shades On</span>
-          </a>
-          <div className="collapse navbar-collapse" id="navbarNav">
+        <div className="navbar navbar-expand-lg navbar-light bg-light">
+          <span className="navbar-brand">
+            <div id="hanging_title">With My</div>
+            <span id="shades_on">Shades On</span>
+          </span>
+          <div className="navbar-menu">
             <ul className="navbar-nav">
               <li className="nav-item cool-underline">
                 <Link to="/">Home</Link>
               </li>
               <li className="nav-item active cool-underline">
-                <Link to="/tech">Tech</Link>
+                <Link to="/blog">Blog</Link>
               </li>
               <li className="nav-item cool-underline">
-                <Link to="/Travel">Travel</Link>
+                <Link to="/photography">Photography</Link>
               </li>
-              <li className="nav-item cool-underline">
-                <Link to="/life">Beauty&Etiquette</Link>
+              <li className="nav-connect cool-underline">
+                <Link to="/connect" id="nav-connect-link">
+                  Connect
+                </Link>
+                <div id="connect_dropdown_content">
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://github.com/Akouvik"
+                  >
+                    Github
+                  </a>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.linkedin.com/in/akouvi-kouedjin/"
+                  >
+                    LinkedIn
+                  </a>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://twitter.com/Bkouvi"
+                  >
+                    Twitter
+                  </a>
+                </div>
               </li>
-              <li className="nav-item cool-underline">
-                <Link to="/readme">Read Me</Link>
-              </li>
-              {/* <li className="nav-item cool-underline">
-                <Link to="/contributor">contributor</Link>
-              </li> */}
             </ul>
           </div>
           <hr />
           <Route exact path="/" component={TabObject.Home} />
-          <Route path="/travel" component={TabObject.Travel} />
-          <Route path="/tech" component={TabObject.Tech} />
-          <Route path="/life" component={TabObject.Beauty} />
-          <Route path="/readme" component={TabObject.Readme} />
-          <Route path="/contributor" component={TabObject.Contributor} />
-        </nav>
+          <Route exact path="/blog" component={Blog} />
+          {/* <Route exact path="/articles" component={TabObject.Articles} /> */}
+
+          <Route path="/photography" component={TabObject.Photography} />
+          <Route path="/connect" component={TabObject.Connect} />
+        </div>
       </Router>
     );
   }

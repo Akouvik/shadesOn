@@ -1,0 +1,29 @@
+#photos {
+  input {
+    width: 58%;
+    height: 2em;
+    margin-left: 1em;
+    border: 1px solid grey;
+    border-radius: 3em;
+    text-align: center;
+    outline: none;
+    padding: 1.2em 0;
+    background: #f2f2f2;
+    &:focus::-webkit-input-placeholder {
+      outline: none;
+      color: transparent;
+    }
+  }
+}
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
