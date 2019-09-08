@@ -21,7 +21,7 @@ class Navigation extends Component {
                 <Link to="/blog">Blog</Link>
               </li>
               <li className="nav-item cool-underline">
-                <Link to="/photography">Photography</Link>
+                <Link to="/Projects">Projects</Link>
               </li>
               <li className="nav-connect cool-underline">
                 <Link to="/connect" id="nav-connect-link">
@@ -58,7 +58,7 @@ class Navigation extends Component {
           <Route exact path="/blog" component={Blog} />
           {/* <Route exact path="/articles" component={TabObject.Articles} /> */}
 
-          <Route path="/photography" component={TabObject.Photography} />
+          <Route path="/projects" component={TabObject.Projects} />
           <Route path="/connect" component={TabObject.Connect} />
         </div>
       </Router>
